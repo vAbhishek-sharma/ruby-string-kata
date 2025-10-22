@@ -22,7 +22,9 @@ class StringCalculator
       raise ArgumentError, "negatives not allowed: #{negatives.join(', ')}"
     end
 
+    nums.reject! { |n| n > 1000 }  # ignore > 1000
     nums.sum
+
   end
 
   def get_called_count

@@ -24,4 +24,6 @@ RSpec.describe StringCalculator do
     expect(sc.get_called_count).to eq 3
   end
 
+  it { expect(sc.add("2,1001")).to eq 2 }
+
 end
