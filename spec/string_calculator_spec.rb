@@ -2,7 +2,9 @@ require "rspec"
 require_relative "../lib/string_calculator"
 
 RSpec.describe StringCalculator do
-  it "exists" do
-    expect(described_class.new).to be_a(StringCalculator)
-  end
+  subject(:sc) { described_class.new }
+
+  it { expect(sc.add("")).to eq 0 }          # "" == 0
+  it { expect(sc.add("1")).to eq 1 }          # "1" == 1
+  it { expect(sc.add("1,2")).to eq 3 }        # "1,2" == 3
 end
