@@ -19,4 +19,9 @@ RSpec.describe StringCalculator do
     expect { sc.add("-1,2,-3") }.to raise_error(ArgumentError, /-1, -3/)
   end
 
+  it "tracks how many times add was called" do
+    3.times { sc.add("1") }
+    expect(sc.get_called_count).to eq 3
+  end
+
 end

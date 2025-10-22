@@ -1,7 +1,10 @@
 class StringCalculator
-  def initialize; end
+  def initialize
+    @called = 0
+  end
 
   def add(input)
+    @called += 1
     return 0 if input.nil? || input.empty?
 
     delims = [",", "\n"]
@@ -20,5 +23,9 @@ class StringCalculator
     end
 
     nums.sum
+  end
+
+  def get_called_count
+    @called
   end
 end
