@@ -15,4 +15,8 @@ RSpec.describe StringCalculator do
     expect { sc.add("1,-2,3") }.to raise_error(ArgumentError, /negatives not allowed/i)
   end
 
+  it "lists all negatives in the error" do
+    expect { sc.add("-1,2,-3") }.to raise_error(ArgumentError, /-1, -3/)
+  end
+
 end

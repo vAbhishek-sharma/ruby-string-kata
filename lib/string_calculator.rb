@@ -14,8 +14,9 @@ class StringCalculator
 
     nums = body.split(Regexp.union(delims)).map!(&:to_i)
 
-    if (neg = nums.find { |n| n < 0 })
-      raise ArgumentError, "negatives not allowed: #{neg}"
+    negatives = nums.select { |n| n < 0 }
+    unless negatives.empty?
+      raise ArgumentError, "negatives not allowed: #{negatives.join(', ')}"
     end
 
     nums.sum
