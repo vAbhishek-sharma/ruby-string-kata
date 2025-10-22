@@ -8,11 +8,17 @@ class StringCalculator
     return 0 if input.nil? || input.empty?
 
     delims = [",", "\n"]
-    body = input
+    body   = input
 
     if input.start_with?("//")
       header, body = input.split("\n", 2)
-      delims = [header[2]]
+      spec = header[2..] # everything after "//"
+      delims =
+        if spec.start_with?("[")
+          spec.scan(/\[([^\]]+)\]/).flatten # one or many bracketed delimiters
+        else
+          [spec[0]] # single-char
+        end
     end
 
     nums = body.split(Regexp.union(delims)).map!(&:to_i)
@@ -22,12 +28,9 @@ class StringCalculator
       raise ArgumentError, "negatives not allowed: #{negatives.join(', ')}"
     end
 
-    nums.reject! { |n| n > 1000 }  # ignore > 1000
+    nums.reject! { |n| n > 1000 }
     nums.sum
-
   end
 
-  def get_called_count
-    @called
-  end
+  def get_called_count = @called
 end

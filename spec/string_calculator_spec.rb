@@ -25,5 +25,6 @@ RSpec.describe StringCalculator do
   end
 
   it { expect(sc.add("2,1001")).to eq 2 }
+  it { expect(sc.add("//[***]\n1***2***3")).to eq 6 }
 
 end
